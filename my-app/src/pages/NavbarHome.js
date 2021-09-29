@@ -18,6 +18,7 @@ function NavbarHome() {
         <NavLink className="navbar-brand" to="/">
         <img src={logo} alt="logo" />
         </NavLink>
+        <br/>
         <button
           className="navbar-toggler"
           type="button"

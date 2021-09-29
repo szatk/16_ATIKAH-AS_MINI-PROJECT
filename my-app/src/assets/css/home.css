@@ -3,3 +3,11 @@
     position: relative;
     width: 100%;
   }
+
+  .listGambar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  
