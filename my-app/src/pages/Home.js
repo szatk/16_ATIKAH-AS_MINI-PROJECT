@@ -2,36 +2,44 @@ import React from 'react'
 import Navbar from './NavbarHome'
 import Footer from './Footer'
 import { NavLink } from 'react-router-dom'
-import background from '../assets/img/Background.png'
+import background from '../assets/img/background.png'
 import '../assets/css/home.css'
 
 
 function Home() {
     return (
+    <>
       <div id="my-content">
       <Navbar />
 
       <div className="header-body d-flex justify-content-center ">
-        <div className="container mt-5">
-          <div className="row mb-5">
             {/* <h1 style={{ margin: 'auto', textAlign: 'center' }}>{timestamp}</h1> */}
           </div>
-          <div className="row">
-            <div className="col-md-12">
               <img className="my-img" src={background} alt="profile-pic" />
             </div>
-                <NavLink to="/contact">
-                  <button
-                    type="button"
-                    className="btn btn-primary btn-lg btn-getInTouch"
-                  >
-                    Get In Touch
-                  </button>
-                </NavLink>
-              </div>
-            </div>
+            <br></br>
+      <div className="h4">
+           <h4>NEW COMING PRODUCT</h4>
           </div>
-        </div>
+          <br></br>
+
+      <div>
+      <div class="container">
+  <div class="row">
+    <div class="col">
+      First in DOM, no order applied
+    </div>
+    <div class="col order-5">
+      Second in DOM, with a larger order
+    </div>
+    <div class="col order-1">
+      Third in DOM, with an order of 1
+    </div>
+  </div>
+</div>
+      </div>
+  
+  </>
   )
 }
 
