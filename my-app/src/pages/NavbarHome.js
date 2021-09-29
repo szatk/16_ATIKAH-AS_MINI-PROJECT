@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import logo from '../assets/img/logo.png'
-import { Badge } from '@material-ui/core';
+import { Badge, Container } from '@material-ui/core';
 import {  ShoppingCartOutlined } from '@material-ui/icons'
 import '../assets/css/navbar.css'
 import styled from 'styled-components'
@@ -13,12 +13,40 @@ const ul=styled.div`
 
 function NavbarHome() {
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light px-5 shadow-sm">
-      <div className="container-fluid">
-        <NavLink className="navbar-brand" to="/">
+      <>
+      <Container>
+        <li className="SignUp">
+              <NavLink
+                exact
+                to="/SignUp"
+                className="nav-link"
+                activeClassName="my-active"
+                aria-current="page"
+              >
+                Sign Up
+              </NavLink>
+              <NavLink
+                exact
+                to="/Login"
+                className="nav-link"
+                activeClassName="my-active"
+                aria-current="page"
+              >
+                Login
+              </NavLink>
+        </li>
+      </Container>
+
+      <nav className="navbar navbar-expand-lg navbar-light bg-light px-5 shadow-sm">
+      <div className="logo">
+        <NavLink exact to="/">
         <img src={logo} alt="logo" />
         </NavLink>
-        <br/>
+      </div>
+      <br></br>
+      <br></br>
+      
+        <div className="container-fluid">
         <button
           className="navbar-toggler"
           type="button"
@@ -26,18 +54,17 @@ function NavbarHome() {
           data-bs-target="#navbarContent"
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+          aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
+        
         <div className="collapse navbar-collapse" id="navbarContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
           <ul className ="navbar-nav d-flex align-items-center">
           {/* <ul className style={{color:'#FFDAC1'}}></ul> tadinya buat nampilin background warna */}
+      
             <li className="nav-item px-2 ">
-              <NavLink
-                exact
-                to="/"
+              <NavLink exact to="/"
                 className="nav-link"
                 activeClassName="my-active"
                 aria-current="page"
@@ -85,36 +112,14 @@ function NavbarHome() {
                 BANTUAN
               </NavLink>
             </li>
-            <li className="nav-item px-2">
-              <NavLink
-                exact
-                to="/SignUp"
-                className="nav-link"
-                activeClassName="my-active"
-                aria-current="page"
-              >
-                Sign Up
-              </NavLink>
-            </li>
-            <li className="nav-item px-2">
-              <NavLink
-                exact
-                to="/Login"
-                className="nav-link"
-                activeClassName="my-active"
-                aria-current="page"
-              >
-                Login
-              </NavLink>
-            </li>
             <Badge badgeContent = {1} color = "primary"> 
-               <ShoppingCartOutlined/>
-                    </Badge>
+            <ShoppingCartOutlined/>
+            </Badge>
           </ul>
         </div>
       </div>
     </nav>
-   
+   </>
   )
 }
 
@@ -212,10 +217,3 @@ export default NavbarHome
 // }
 
 // export default Navbar
-
-
-
-
-
-
-
