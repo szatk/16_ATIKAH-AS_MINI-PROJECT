@@ -1,34 +1,54 @@
-.container-fluid{
-text-align: center;
+.NavLink{
+    color: black;
+}
+a{
+    color: black;
+}
+nav.navbar.shadow-sm {
+    background-color: #C4C4C4;
+    display: flex;
+    justify-content: end;
+    text-align: end;
 }
 
 li.SignUp{
     display: flex;
-    justify-content: right;
-    text-decoration:black;
+    justify-content: end;
+    text-align: end;
+    background-color: #C4C4C4;
 }
 
-.container-fluid{
+nav.navbar.logo{
     justify-content: center;
-}
-
-.logo{
-    justify-content: center;
-}
-
-.ul {
-    padding : 10px 20px;
-    display : center;
-    justify-content : space-between;
     align-items: center;
-    font-size: 14px;
-cursor: pointer;
-margin-left: 25px;
+    align-content: center;
 }
 
-
-.bootstrap {
-    background-color: #FFDAC1;
+nav.navbar.logo.div.simbol{
+    justify-content: end;
+    text-align: end;
 }
 
+.MuiContainer-root {
+    width: 100%;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+    background-color: #C4C4C4;
+
+}
+
+.navbar-collapse {
+    flex-basis: 100%;
+    flex-grow: 1;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    color: black;
+    text-decoration: black;
+    background-color: white;
+}
 

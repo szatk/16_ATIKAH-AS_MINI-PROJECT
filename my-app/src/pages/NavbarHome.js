@@ -2,19 +2,19 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import logo from '../assets/img/logo.png'
 import { Badge, Container } from '@material-ui/core';
-import {  ShoppingCartOutlined } from '@material-ui/icons'
+import {  Search, Favorite, ShoppingCartOutlined } from '@material-ui/icons'
 import '../assets/css/navbar.css'
 import styled from 'styled-components'
 
 
 const ul=styled.div`
-    background-color : #FFDAC1;
+    background-color : #C4C4C4;
     `
 
 function NavbarHome() {
     return (
       <>
-      <Container>
+      <nav className="navbar shadow-sm">
         <li className="SignUp">
               <NavLink
                 exact
@@ -35,17 +35,24 @@ function NavbarHome() {
                 Login
               </NavLink>
         </li>
-      </Container>
+      </nav>
 
-      <nav className="navbar navbar-expand-lg navbar-light bg-light px-5 shadow-sm">
+      <nav className="navbar logo">
       <div className="logo">
         <NavLink exact to="/">
-        <img src={logo} alt="logo" />
+        <img src={logo} alt="logo"/>
         </NavLink>
       </div>
-      <br></br>
-      <br></br>
+      <div className="simbol">
+      <Badge> 
+            <Search/>
+            <Favorite/>
+            <ShoppingCartOutlined/>
+      </Badge>
+      </div>
+      </nav>
       
+      <nav className="navbar navbar-expand-lg navbar-white bg-white px-5 shadow-sm">
         <div className="container-fluid">
         <button
           className="navbar-toggler"
@@ -59,8 +66,7 @@ function NavbarHome() {
         </button>
         
         <div className="collapse navbar-collapse" id="navbarContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
-          <ul className ="navbar-nav d-flex align-items-center">
+          <ul className ="navbar-nav d-center align-items-center">
           {/* <ul className style={{color:'#FFDAC1'}}></ul> tadinya buat nampilin background warna */}
       
             <li className="nav-item px-2 ">
@@ -112,9 +118,7 @@ function NavbarHome() {
                 BANTUAN
               </NavLink>
             </li>
-            <Badge badgeContent = {1} color = "primary"> 
-            <ShoppingCartOutlined/>
-            </Badge>
+           
           </ul>
         </div>
       </div>

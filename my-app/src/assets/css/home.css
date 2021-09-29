@@ -8,6 +8,18 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    align-content: center;
   }
   
-  
+  .iniTitle{
+      justify-content: center;
+      text-align: center;
+      font-weight: bold;
+  }
+
+  .iniHarga{
+    justify-content: space-between;
+    text-align: center;
+    align-content: center;
+}
