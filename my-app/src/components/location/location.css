@@ -4,12 +4,6 @@ body {
   background: #f0f2f5;
 }
 
-.menu {
-  position: "relative";
-  display: "flex";
-  justify-content: "center";
-}
-
 .topbar {
   background: #f0f2f5;
   height: 40px;
@@ -19,10 +13,6 @@ body {
 .ant-layout-header {
   background: #fff;
   height: 140px;
-}
-
-.ant-layout-header .ant-menu {
-  line-height: 4;
 }
 
 .ant-menu-horizontal {
