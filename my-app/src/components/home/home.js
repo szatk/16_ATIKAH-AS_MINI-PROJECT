@@ -9,47 +9,56 @@ import Background from '../../assets/img/background.png'
 // import Hana from '../../assets/img/Hana.png'
 // import Nayy from '../../assets/img/Nayy.png'
 // import Ikachan from '../../assets/img/Ikachan.png'
-import { gql, useLazyQuery } from '@apollo/client';
+import { gql, useQuery, useLazyQuery } from '@apollo/client';
 
 const { Content } = Layout;
 
 function HomePage(){
-  const GetShoes = gql`
-  query MyQuery {
-    Produk {
+  const GET_SHOES = gql`
+query MyQuery {
+  Produk {
+    id_Kategori
+    deskripsi_Produk
+    gambar
+    harga
+    id
+    is_ready
+    nama
+    size1
+    size2
+    size3
+    Kategori {
+      Tanggal
+      id
+    }
+  }
+}
+`
+  const GET_MYSHOES = gql`
+  query MyQuery($id: Int!) {
+    Produk_by_pk(id: $id) {
       deskripsi_Produk
       gambar
       harga
       id
-      id_Kategori
       is_ready
+      id_Kategori
       nama
       size1
       size2
       size3
+      Kategori {
+        Tanggal
+        id
+      }
     }
   }
-  `
-  const GetMyShoes = gql`
-  query MyQuery {
-    Produk(where: {id_Kategori: {_eq: $id_Kategori}}) {
-      id_Kategori
-      deskripsi_Produk
-      gambar
-      harga
-      id
-      is_ready
-      nama
-      size1
-      size2
-      size3
-    }
-  }
-   `
-  const [getShoes, { data }] = useLazyQuery(GetMyShoes);
-  console.log(data);
+`
+  const { data } = useQuery(GET_MYSHOES);
+  console.log (data)
+  
 
-    return (
+return (
       <Content style={{ background: '#fff', paddingBottom: 50 }}>
         <div style={{ textAlign: 'center' }}>
           <img src={Background} style={{ width: '100%' }} />
