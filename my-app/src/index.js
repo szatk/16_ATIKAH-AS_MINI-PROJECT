@@ -4,10 +4,30 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker.js';
 import './index.css';
 import { BrowserRouter } from 'react-router-dom';
+import reportWebVitals from './reportWebVitals';
+import client from './apollo-client';
+import { ApolloProvider } from '@apollo/client';
+console.log("client = ", client )
 
 ReactDOM.render(
   <BrowserRouter>
-  <App />
-  </BrowserRouter>
-, document.getElementById('root'));
+  <ApolloProvider client={client}>
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+   </ApolloProvider>,
+   </BrowserRouter>,
+  document.getElementById('root')
+);
 registerServiceWorker();
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
+
+//   <BrowserRouter>
+//   <App />
+//   </BrowserRouter>
+// , document.getElementById('root'));
+// registerServiceWorker();
