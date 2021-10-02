@@ -13,8 +13,53 @@ import { gql, useQuery, useLazyQuery } from '@apollo/client';
 
 const { Content } = Layout;
 
+// class HomePage extends Component {
+//   render(){
+//     const GET_SHOES = gql`
+//   query MyQuery {
+//     Produk {
+//       id_Kategori
+//       deskripsi_Produk
+//       gambar
+//       harga
+//       id
+//       is_ready
+//       nama
+//       size1
+//       size2
+//       size3
+//       Kategori {
+//         Tanggal
+//         id
+//       }
+//     }
+//   }
+//   `
+//     const GET_MYSHOES = gql`
+//     query MyQuery($id: Int!) {
+//       Produk_by_pk(id: $id) {
+//         deskripsi_Produk
+//         gambar
+//         harga
+//         id
+//         is_ready
+//         id_Kategori
+//         nama
+//         size1
+//         size2
+//         size3
+//         Kategori {
+//           Tanggal
+//           id
+//         }
+//       }
+//     }
+//   `
+//     const { data } = useQuery(GET_MYSHOES);
+//     console.log (data)
+
 function HomePage(){
-  const GET_SHOES = gql`
+const GET_SHOES = gql`
 query MyQuery {
   Produk {
     id_Kategori
@@ -34,25 +79,24 @@ query MyQuery {
   }
 }
 `
+//baris 84 untuk customisasi 
   const GET_MYSHOES = gql`
-  query MyQuery($id: Int!) {
-    Produk_by_pk(id: $id) {
-      deskripsi_Produk
-      gambar
-      harga
-      id
-      is_ready
-      id_Kategori
-      nama
-      size1
-      size2
-      size3
-      Kategori {
-        Tanggal
+  query MyQuery($id: Int = 4) {
+    Kategori_by_pk(id: $id) {
+      Produks {
+        deskripsi_Produk
+        gambar
+        harga
         id
+        id_Kategori
+        is_ready
+        nama
+        size1
+        size2
+        size3
       }
     }
-  }
+  } 
 `
   const { data } = useQuery(GET_MYSHOES);
   console.log (data)
@@ -127,5 +171,5 @@ return (
     )
   }
 
-  
+
 export default HomePage;
