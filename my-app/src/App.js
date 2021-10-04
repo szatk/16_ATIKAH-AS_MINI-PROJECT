@@ -77,7 +77,7 @@ class App extends Component {
           <Route path="/location" component={LocationPage} />
           <Route path="/help" component={HelpPage} />
           <Route path="/product/:id" component={ProductPage} />
-          <Route path="/review" component={ReviewPage} />
+          <Route path="/review/:id" component={ReviewPage} />
         </div>
         <Footer>
           <Row gutter={[24, 8]}>

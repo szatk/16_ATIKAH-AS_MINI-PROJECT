@@ -15,7 +15,7 @@ import { useEffect } from 'react';
 const { Content } = Layout;
 
 function HomePage(props){
-  const GET_MYSHOES = gql`
+  const GET_MYSHOESS = gql`
   query MyQuery {
     Produk(where: {id_Kategori: {_eq: 4}}) {
       gambar
@@ -31,12 +31,12 @@ function HomePage(props){
     }
   }  
 `
-const [getShoes, { data, loading, error }] = useLazyQuery(GET_MYSHOES);
+const [getShoes, { data, loading, error }] = useLazyQuery(GET_MYSHOESS);
 console.log (data)
   
 useEffect(() => {
   getShoes({ 
-    variables: {id:props.match.params.id_Kategori}
+    variables: {id: props.match.params.id}
   });
   console.log("saya masuk")
 }, []);
@@ -52,9 +52,10 @@ return (
         </div>
         <div style={{ padding: '0 50px', textAlign: 'center' }}>
           {data?.Produk.map((elementProduk)=>( 
-              <Link
+             
+             <Link
                 exact
-                to={"/product/" + elementProduk.id_Kategori}
+                to={"/product/" +  elementProduk.id }
                 className="nav-link"
                 activeClassName="my-active"
                 aria-current="page"
@@ -67,6 +68,7 @@ return (
               </Col>
             </Row>
               </Link>
+              
             ))}
         </div>
       </Content>

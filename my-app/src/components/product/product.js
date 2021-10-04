@@ -57,12 +57,16 @@ function ProductPage(props){
                 > 
                 <Row gutter={[24, 8]}>
                 <Col xs={24} sm={8} md={4} style={{ padding: 10 }}>
+                <div style={{ marginBottom: 10 }}><Link to={"/product/" + elementProduk.id} style={{ color: '#000', textDecoration: 'underline' }}>DETAIL PRODUCT</Link> / <Link to={"/review/" + elementProduk.id} style={{ color: '#000' }}>REVIEW PRODUCT</Link></div>
                 <Image src={elementProduk.gambar} preview={false}
                  style={{ height: 300, marginBottom: 10 }} 
                 className="my-baju1"
                 />
                 <h5 style={{color: "black"}}>{elementProduk.nama}</h5>
                 <h5 style={{color: "black"}}>{elementProduk.harga}</h5>
+                <Button shape="circle" type="default">{elementProduk.size1}</Button>
+                <Button shape="circle" type="default">{elementProduk.size2}</Button>
+                <Button shape="circle" type="default">{elementProduk.size3}</Button>
                 <p style={{color: "black"}}>{elementProduk.deskripsi_Produk}</p>
                 </Col>
               </Row>
