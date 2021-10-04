@@ -10,96 +10,36 @@ import Background from '../../assets/img/background.png'
 // import Nayy from '../../assets/img/Nayy.png'
 // import Ikachan from '../../assets/img/Ikachan.png'
 import { gql, useQuery, useLazyQuery } from '@apollo/client';
+import { useEffect } from 'react';
 
 const { Content } = Layout;
 
-// class HomePage extends Component {
-//   render(){
-//     const GET_SHOES = gql`
-//   query MyQuery {
-//     Produk {
-//       id_Kategori
-//       deskripsi_Produk
-//       gambar
-//       harga
-//       id
-//       is_ready
-//       nama
-//       size1
-//       size2
-//       size3
-//       Kategori {
-//         Tanggal
-//         id
-//       }
-//     }
-//   }
-//   `
-//     const GET_MYSHOES = gql`
-//     query MyQuery($id: Int!) {
-//       Produk_by_pk(id: $id) {
-//         deskripsi_Produk
-//         gambar
-//         harga
-//         id
-//         is_ready
-//         id_Kategori
-//         nama
-//         size1
-//         size2
-//         size3
-//         Kategori {
-//           Tanggal
-//           id
-//         }
-//       }
-//     }
-//   `
-//     const { data } = useQuery(GET_MYSHOES);
-//     console.log (data)
-
-function HomePage(){
-const GET_SHOES = gql`
-query MyQuery {
-  Produk {
-    id_Kategori
-    deskripsi_Produk
-    gambar
-    harga
-    id
-    is_ready
-    nama
-    size1
-    size2
-    size3
-    Kategori {
-      Tanggal
-      id
-    }
-  }
-}
-`
-//baris 84 untuk customisasi 
+function HomePage(props){
   const GET_MYSHOES = gql`
-  query MyQuery($id: Int = 4) {
-    Kategori_by_pk(id: $id) {
-      Produks {
-        deskripsi_Produk
-        gambar
-        harga
-        id
-        id_Kategori
-        is_ready
-        nama
-        size1
-        size2
-        size3
-      }
+  query MyQuery {
+    Produk(where: {id_Kategori: {_eq: 4}}) {
+      gambar
+      deskripsi_Produk
+      harga
+      id
+      id_Kategori
+      is_ready
+      nama
+      size1
+      size2
+      size3
     }
-  } 
+  }  
 `
-  const { data } = useQuery(GET_MYSHOES);
-  console.log (data)
+const [getShoes, { data, loading, error }] = useLazyQuery(GET_MYSHOES);
+console.log (data)
+  
+useEffect(() => {
+  getShoes({ 
+    variables: {id:props.match.params.id_Kategori}
+  });
+  console.log("saya masuk")
+}, []);
   
 
 return (
@@ -114,7 +54,7 @@ return (
           {data?.Produk.map((elementProduk)=>( 
               <Link
                 exact
-                to="/product"
+                to={"/product/" + elementProduk.id_Kategori}
                 className="nav-link"
                 activeClassName="my-active"
                 aria-current="page"

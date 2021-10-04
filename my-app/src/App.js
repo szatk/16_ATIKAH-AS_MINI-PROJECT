@@ -76,7 +76,7 @@ class App extends Component {
           <Route path="/about" component={AboutPage} />
           <Route path="/location" component={LocationPage} />
           <Route path="/help" component={HelpPage} />
-          <Route path="/product" component={ProductPage} />
+          <Route path="/product/:id" component={ProductPage} />
           <Route path="/review" component={ReviewPage} />
         </div>
         <Footer>
