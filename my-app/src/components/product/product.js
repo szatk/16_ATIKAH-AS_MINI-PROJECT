@@ -73,7 +73,7 @@ function ProductPage(props){
               <div style={{ marginTop: 20 }}>
                 <Space>
                   <Button type="default" icon={<ShoppingCartOutlined />} />
-                  <Button type="primary"><Link to="/review">Beli Sekarang</Link></Button>
+                  <Button type="primary"><Link to={"/review/" + elementProduk.id}>Beli Sekarang</Link></Button>
                 </Space>
               </div>
               <div style={{ marginTop: 20 }}>

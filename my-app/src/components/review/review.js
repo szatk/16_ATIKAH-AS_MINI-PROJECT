@@ -2,14 +2,12 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Layout, Row, Col, Button, Input, Collapse, Image, Form } from 'antd';
 import './review.css';
-import { gql, useQuery, useLazyQuery } from '@apollo/client'
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { useMutation } from '@apollo/client';
+import { gql, useQuery, useLazyQuery, useMutation} from '@apollo/client'
+import { useState, useEffect } from 'react';
 import LoadingSvg from '../LoadingSvg'
 
 const { Content } = Layout;
-const { TextArea } = Input;
+
 const { Panel } = Collapse;
 
 function ReviewPage(props){
@@ -59,6 +57,7 @@ mutation MyMutation2($id: Int!, $message: String = "") {
   }
 }
 `
+
 const InsertMessage = gql`
 mutation MyMutation($object: Message_insert_input!) {
   insert_Message_one(object: $object) {
@@ -81,7 +80,9 @@ const initialData = {    //ini buat message
   // console.log("detail baju props", data);
 
   const [user, setUser] = useState(initialData);
-  const [updateMessage, { loading:loadingUpdate}] = useMutation(UpdateMessage);
+  const [updateMessage, { loading:loadingUpdate}] = useMutation(UpdateMessage, {
+    refetchQueries: [GetMessage]
+  });
   const [deleteMessage, {loading : loadingDelete}] = useMutation(DeleteMessage,{
     refetchQueries: [GetMessage]
   });
@@ -96,9 +97,9 @@ const initialData = {    //ini buat message
     // console.log("saya masuk")
   }, []);
 
-  if (loading || loadingUpdate || loadingDelete || loadingInsert){
-    return <LoadingSvg />
-   }
+  // if (loading || loadingUpdate || loadingDelete || loadingInsert){
+  //   return <LoadingSvg />
+  //  }
 
   // const clickImg = (elementImg) => {
   //   console.log("klik gambar");
@@ -106,7 +107,8 @@ const initialData = {    //ini buat message
 
      // untuk menjalankan pas submit
      const onSubmitList = (e) => {
-      console.log("masuk submit")
+      console.log("masuk submit", e)
+
       e.preventDefault();
       insertMessage({variables : {
         object : {
@@ -167,7 +169,7 @@ const initialData = {    //ini buat message
               <div style={{ marginTop: 20 }}>
               <Collapse defaultActiveKey={['1']} ghost>
                  <Panel header={<Button type="primary">Add Your Review</Button>} showArrow={false} key='1'>
-                 <form className="formmessage" onSubmit={onSubmitList}>
+                 <form className="formmessage" >
                  <label 
                   for="username" 
                   className="form-label">Username</label>
@@ -180,6 +182,7 @@ const initialData = {    //ini buat message
                   value={user.username}
                   placeholder="Masukkan Nama">
                  </input>
+
                  <label 
                   for="floatingTextarea2"
                   className="form-label">Pesan Untukku</label>
@@ -193,11 +196,10 @@ const initialData = {    //ini buat message
                   placeholder="Masukkan Pesan"
                   style={{height: "100px"}}>
                   </textarea>   
-                 <button type="submit" style={{background: "#DCAB92"}} className="btn btn-primary">SAVE</button>
+                 <button type="submit" style={{background: "#DCAB92"}} className="btn btn-primary" onClick={onSubmitList}>SAVE</button>
                  </form>
-                </Panel>
-              </Collapse>
-              {dataMessage?.Message.map((show) => (
+
+                 {dataMessage?.Message.map((show) => (
               <li className='komen-list card-kontent mb-4'>      
               <div className="">
               <h5 style={{paddingLeft: "20px"}} className="card-titles ml-4 mt-3">{show.username}</h5>
@@ -213,6 +215,8 @@ const initialData = {    //ini buat message
               </div>
               </li>
               ))}
+                </Panel>
+              </Collapse>              
               </div>
             </Col>
           </Row>
