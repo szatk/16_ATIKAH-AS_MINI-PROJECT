@@ -30,7 +30,7 @@ function ReviewPage(props){
 
 const GetMessage = gql`
 query MyQuery {
-  Message(limit: 1, order_by: {id: desc}) {
+  Message(limit: 5, order_by: {id: desc}) {
     message
     id
     username
@@ -51,7 +51,7 @@ mutation MyMutation($id: Int!) {
 // mutation MyMutation2($id: Int!, $message: String = "") {
 
 const UpdateMessage = gql `
-mutation MyMutation2($id: Int!, $message: String!) {
+mutation MyMutation2($id: Int!, $message: String = "") {
   update_Message_by_pk(pk_columns: {id: $id}, _set: {message: $message}) {
     id
     message
@@ -81,17 +81,17 @@ const initialData = {    //ini buat message
   const { data: dataMessage, loading:loadingMessage, error:errorMessage } = useQuery(GetMessage);
   // console.log("detail baju props", data);
 
-  
   const [user, setUser] = useState(initialData);
   const [userStatus, setUserStatus] = useState(false);
+  const [userBaru, setUserBaru] = useState('')
  
   const clickUser = () => {
     return setUserStatus(!userStatus)
   }
-  
-  const [updateMessage, { loading:loadingUpdate}] = useMutation(UpdateMessage, {
-    refetchQueries: [GetMessage]
-  });
+
+  // const [updateMessage, { loading:loadingUpdate}] = useMutation(UpdateMessage, {
+  //   refetchQueries: [GetMessage]
+  // });
   const [deleteMessage, {loading : loadingDelete}] = useMutation(DeleteMessage,{
     refetchQueries: [GetMessage]
   });
@@ -116,7 +116,7 @@ const initialData = {    //ini buat message
 
      // untuk menjalankan pas submit
      const onSubmitList = (e) => {
-      console.log("masuk submit", e)
+      // console.log("masuk submit", e)
 
       e.preventDefault();
       insertMessage({variables : {
@@ -147,12 +147,12 @@ const initialData = {    //ini buat message
    }})
  };
  
- const onUpdateItem =  (idx) => {
-  //  console.log("idx= update item", idx.target.value )
-     updateMessage({variables: {
-       id: idx.target.value
-     }})
-   };
+ const onUpdateItem =  (idx) => { 
+  setUserBaru({variables: {
+    id: idx.target.value
+  }})
+  console.log("userBaru = ", userBaru)
+};
 
   return (
     <Content style={{ background: '#fff', paddingBottom: 50 }}>
@@ -218,15 +218,10 @@ const initialData = {    //ini buat message
               <button 
               type="submit" style={{background: "#FFDAC1"}} className="btn"
               onClick={onDeleteItem} value={show.id} className="del">Delete</button>
-
-              <li className={checked ? 'done todo-item' : 'todo-item'} data-key={show.id}>
-                    <input onClick={onUpdateItem} id={show.id} type="checkbox" />
-                    <label htmlFor={show.id} className="tick js-tick"></label>
               <button 
               type="submit" style={{background: "#FFDAC1"}} className="btn"
               onClick={clickUser} value={show.id} className="edit">Edit</button>
-              {userStatus ? <form  onClick={onSubmitList}><input onClick={onUpdateItem} placeholder={show.id}/> </form> : ""}
-              </li>
+              {userStatus ? <input onChange={onUpdateItem} placeholder={show.message}/> : ""}
               </div>
               </li>
               ))}
