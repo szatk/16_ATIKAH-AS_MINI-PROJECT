@@ -48,8 +48,10 @@ mutation MyMutation($id: Int!) {
 }
 `
 
+// mutation MyMutation2($id: Int!, $message: String = "") {
+
 const UpdateMessage = gql `
-mutation MyMutation2($id: Int!, $message: String = "") {
+mutation MyMutation2($id: Int!, $message: String!) {
   update_Message_by_pk(pk_columns: {id: $id}, _set: {message: $message}) {
     id
     message
@@ -79,7 +81,14 @@ const initialData = {    //ini buat message
   const { data: dataMessage, loading:loadingMessage, error:errorMessage } = useQuery(GetMessage);
   // console.log("detail baju props", data);
 
+  
   const [user, setUser] = useState(initialData);
+  const [userStatus, setUserStatus] = useState(false);
+ 
+  const clickUser = () => {
+    return setUserStatus(!userStatus)
+  }
+  
   const [updateMessage, { loading:loadingUpdate}] = useMutation(UpdateMessage, {
     refetchQueries: [GetMessage]
   });
@@ -209,9 +218,15 @@ const initialData = {    //ini buat message
               <button 
               type="submit" style={{background: "#FFDAC1"}} className="btn"
               onClick={onDeleteItem} value={show.id} className="del">Delete</button>
+
+              <li className={checked ? 'done todo-item' : 'todo-item'} data-key={show.id}>
+                    <input onClick={onUpdateItem} id={show.id} type="checkbox" />
+                    <label htmlFor={show.id} className="tick js-tick"></label>
               <button 
               type="submit" style={{background: "#FFDAC1"}} className="btn"
-              onClick={onUpdateItem} value={show.id} className="edit">Edit</button>
+              onClick={clickUser} value={show.id} className="edit">Edit</button>
+              {userStatus ? <form  onClick={onSubmitList}><input onClick={onUpdateItem} placeholder={show.id}/> </form> : ""}
+              </li>
               </div>
               </li>
               ))}
