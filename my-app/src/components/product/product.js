@@ -6,6 +6,7 @@ import { HeartOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 // import Dyah from '../../assets/img/Dyah.png'
 import { gql, useQuery, useLazyQuery } from '@apollo/client';
 import { useEffect } from 'react';
+import LoadingSvg from "../LoadingSvg";
 
 const { Content } = Layout;
 
@@ -37,14 +38,13 @@ function ProductPage(props){
     console.log("saya masuk")
   }, []);
 
-  // const clickImg = (elementImg) => {
-  //   console.log("klik gambar");
-  // };
-
+  if (loading){
+    return <LoadingSvg />
+   }
+  
   return (
         <Content style={{ background: '#fff', paddingBottom: 50 }}>
           <div style={{ textAlign: 'center' }}>
-            {/* <img src={Background} style={{ width: '100%' }} /> */}
           </div>
           <div style={{ padding: '0 50px', textAlign: 'center' }}>
             {data?.Produk.map((elementProduk)=>( 
@@ -56,21 +56,21 @@ function ProductPage(props){
                   aria-current="page"
                 > 
                 <Row gutter={[24, 8]}>
-                <Col xs={24} sm={8} md={4} style={{ padding: 10 }}>
+                <Col xs={24} sm={24} md={4} style={{ padding: 10 }}>
                 <div style={{ marginBottom: 10 }}><Link to={"/product/" + elementProduk.id} style={{ color: '#000', textDecoration: 'underline' }}>DETAIL PRODUCT</Link> / <Link to={"/review/" + elementProduk.id} style={{ color: '#000' }}>REVIEW PRODUCT</Link></div>
                 <Image src={elementProduk.gambar} preview={false}
                  style={{ height: 300, marginBottom: 10 }} 
-                className="my-baju1"
+                className="my-shoes"
                 />
-                <h5 style={{color: "black"}}>{elementProduk.nama}</h5>
+                <h5 style={{color: "black",}}>{elementProduk.nama}</h5>
                 <h5 style={{color: "black"}}>{elementProduk.harga}</h5>
+                <div></div>
                 <Button shape="circle" type="default">{elementProduk.size1}</Button>
                 <Button shape="circle" type="default">{elementProduk.size2}</Button>
                 <Button shape="circle" type="default">{elementProduk.size3}</Button>
                 <p style={{color: "black"}}>{elementProduk.deskripsi_Produk}</p>
-                </Col>
-              </Row>
-              <div style={{ marginTop: 20 }}>
+
+                <div style={{ marginTop: 20 }}>
                 <Space>
                   <Button type="default" icon={<ShoppingCartOutlined />} />
                   <Button type="primary"><Link to={"/review/" + elementProduk.id}>Beli Sekarang</Link></Button>
@@ -82,6 +82,8 @@ function ProductPage(props){
                   <div>Add Wish List</div>
                 </Space>
               </div>
+                </Col>
+              </Row>
               </Link>                
               ))}
           </div>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Layout, Row, Col, Image } from 'antd';
 import './shop.css';
 import { gql, useQuery } from '@apollo/client';
+import LoadingSvg from '../LoadingSvg';
 
 const { Content } = Layout;
 
@@ -28,15 +29,17 @@ function ShopPage(){
   }
   `
 
-    const { data } = useQuery(GET_SHOES);
+    const { data, loading } = useQuery(GET_SHOES);
     // console.log (data)
-  
+
+    if (loading){
+      return <LoadingSvg />
+     }
   return (
         <Content style={{ background: '#fff', paddingBottom: 50 }}>
           <div style={{ textAlign: 'center' }}>
-            {/* <img src={Background} style={{ width: '100%' }} /> */}
           </div>
-          <div style={{ padding: '0 50px', textAlign: 'center' }}>
+          <div style={{ padding: '0 50px', width: "100%", height: 400, textAlign: 'center', justifyContent: "space-between", display: "flex" }}>
             {data?.Produk.map((elementProduk)=>( 
                 <Link
                   exact
@@ -45,11 +48,14 @@ function ShopPage(){
                   activeClassName="my-active"
                   aria-current="page"
                 > 
-                <Row gutter={[24, 8]}>
-                <Col xs={24} sm={8} md={4} style={{ padding: 10 }}>
-                <Image src={elementProduk.gambar} preview={false} style={{ height: 300, marginBottom: 10 }} />
-                <h5 style={{color: "black"}}>{elementProduk.nama}</h5>
+                <Row gutter={10, 10}>
+                <Col md={40} style={{ padding: 10, justifyContent: "space-between" }}>
+                <div>
+                <Image src={elementProduk.gambar} preview={false} style={{ width: "100%", height: 290, marginBottom: 5, }} />
+                <h5 style={{fontWeight: "bold", color: "black"}}>{elementProduk.nama}</h5>
                 <h5 style={{color: "black"}}>{elementProduk.harga}</h5>
+                </div>
+                <br/> 
                 </Col>
               </Row>
                 </Link>

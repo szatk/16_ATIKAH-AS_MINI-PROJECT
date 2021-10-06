@@ -28,3 +28,7 @@ body {
 .ant-menu-horizontal {
   border: none;
 }
+
+.ant-row .a {
+  justify-content: space-between;
+}
