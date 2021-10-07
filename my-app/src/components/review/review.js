@@ -298,7 +298,7 @@ function ReviewPage(props) {
                             </p>
                             <button
                               type="submit"
-                              style={{ background: "#FFDAC1" }}
+                              style={{ background: "red", marginRight: 10 }}
                               className="btn"
                               onClick={onDeleteItem}
                               value={show.id}

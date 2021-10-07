@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Layout, Row, Col, Space, Button, Image } from 'antd';
 import './product.css';
 import { HeartOutlined, ShoppingCartOutlined } from '@ant-design/icons';
-// import Dyah from '../../assets/img/Dyah.png'
 import { gql, useQuery, useLazyQuery } from '@apollo/client';
 import { useEffect } from 'react';
 import LoadingSvg from "../LoadingSvg";
@@ -46,7 +45,7 @@ function ProductPage(props){
         <Content style={{ background: '#fff', paddingBottom: 50 }}>
           <div style={{ textAlign: 'center' }}>
           </div>
-          <div style={{ padding: '0 50px', textAlign: 'center' }}>
+          <div style={{ padding: "0 10px", textAlign: 'center',  display: "flex", flexWrap: "wrap", justifyContent: "space-between"}}>
             {data?.Produk.map((elementProduk)=>( 
                 <Link
                   exact
@@ -56,19 +55,29 @@ function ProductPage(props){
                   aria-current="page"
                 > 
                 <Row gutter={[24, 8]}>
-                <Col xs={24} sm={24} md={4} style={{ padding: 10 }}>
-                <div style={{ marginBottom: 10 }}><Link to={"/product/" + elementProduk.id} style={{ color: '#000', textDecoration: 'underline' }}>DETAIL PRODUCT</Link> / <Link to={"/review/" + elementProduk.id} style={{ color: '#000' }}>REVIEW PRODUCT</Link></div>
+                <Col >
+                <div style={{padding: 10, marginBottom: 10}}><Link to={"/product/" + elementProduk.id} style={{ color: '#000', textDecoration: 'underline' }}>DETAIL PRODUCT</Link> / <Link to={"/review/" + elementProduk.id} style={{ color: '#000' }}>REVIEW PRODUCT</Link>
+                <br/>
+                <br/>
                 <Image src={elementProduk.gambar} preview={false}
-                 style={{ height: 300, marginBottom: 10 }} 
+                 style={{ width: "100%", height: 500, marginTop: 10 }} 
                 className="my-shoes"
                 />
-                <h5 style={{color: "black",}}>{elementProduk.nama}</h5>
-                <h5 style={{color: "black"}}>{elementProduk.harga}</h5>
-                <div></div>
+                </div>
+                </Col>
+                
+                <Col xs={24} sm={24} md={8} style={{ padding: 10, width: "100%"}}>
+                <div style={{ marginTop: 30, padding: "0px 50px" }}>
+                  <br/>
+                <div>
+                <h5 style={{color: "black", fontWeight: "bold", fontSize: "25pt",}}>{elementProduk.nama}</h5>
+                <h5 style={{color: "black", fontSize: "20pt"}}>{elementProduk.harga}</h5>
+                </div>
+
                 <Button shape="circle" type="default">{elementProduk.size1}</Button>
                 <Button shape="circle" type="default">{elementProduk.size2}</Button>
                 <Button shape="circle" type="default">{elementProduk.size3}</Button>
-                <p style={{color: "black"}}>{elementProduk.deskripsi_Produk}</p>
+                <p style={{color: "black", fontSize: "12pt"}}>{elementProduk.deskripsi_Produk}</p>
 
                 <div style={{ marginTop: 20 }}>
                 <Space>
@@ -82,6 +91,7 @@ function ProductPage(props){
                   <div>Add Wish List</div>
                 </Space>
               </div>
+              </div>
                 </Col>
               </Row>
               </Link>                
@@ -90,82 +100,5 @@ function ProductPage(props){
         </Content>
     )
   }
-
-// class ProductPage extends Component {
-//   render(){
-//     return (
-//       <Content style={{ background: '#fff', paddingBottom: 50 }}>
-//         <div style={{ padding: 20 }}>
-//           <Row gutter={[24, 8]}>
-//             <Col xs={24} sm={24} md={8} style={{ padding: 10 }}>
-//               <div style={{ marginBottom: 10 }}><Link to="/product" style={{ color: '#000', textDecoration: 'underline' }}>DETAIL PRODUCT</Link> / <Link to="/review" style={{ color: '#000' }}>REVIEW PRODUCT</Link></div>
-//               <Image src={Dyah} style={{ height: '500px' }} />
-//             </Col>
-//             <Col xs={24} sm={24} md={16} style={{ padding: 10, marginTop: 30 }}>
-//               <div style={{ fontWeight: 'bold', fontSize: '25pt' }}>DYAH MINI HEELS</div>
-//               <div style={{ fontSize: '20pt' }}>Rp. 200.0000</div>
-              // <div style={{ marginTop: 20 }}>
-              //   <Space>
-              //     <Button type="default" icon={<ShoppingCartOutlined />} />
-              //     <Button type="primary"><Link to="/review">Beli Sekarang</Link></Button>
-              //   </Space>
-              // </div>
-              // <div style={{ marginTop: 20 }}>
-              //   <Space>
-              //     <HeartOutlined />
-              //     <div>Add Wish List</div>
-              //   </Space>
-              // </div>
-//               <div style={{ marginTop: 20 }}>
-//                 <div style={{ fontWeight: 'bold' }}>Size:</div>
-//                 <Space>
-//                   <Button shape="circle" type="default">39</Button>
-//                   <Button shape="circle" type="default">40</Button>
-//                   <Button shape="circle" type="default">41</Button>
-//                 </Space>
-//               </div>
-//               <div style={{ marginTop: 20 }}>
-//                 <div style={{ fontWeight: 'bold' }}>Description:</div>
-//                 <div>
-//                   <Space>
-//                     <div>Upper : </div>
-//                     <div>Artificial Leather</div>
-//                   </Space>
-//                 </div>
-//                 <div>
-//                   <Space>
-//                     <div>Lining : </div>
-//                     <div>Jersey</div>
-//                   </Space>
-//                 </div>
-//                 <div>
-//                   <Space>
-//                     <div>Heels : </div>
-//                     <div>4 cm</div>
-//                   </Space>
-//                 </div>
-//                 <div>
-//                   <Space>
-//                     <div>Shoe last : </div>
-//                     <div>Fiore</div>
-//                   </Space>
-//                 </div>
-//                 <div>
-//                   <Space>
-//                     <div>Outsole : </div>
-//                     <div>Rubber</div>
-//                   </Space>
-//                 </div>
-//                 <div>Run true to size</div>
-//                 <div>Weight Approximaely 345 Gr (35) - 495 Gr (43)</div>
-//                 <div>Handcrafted in Pangkalan Berandan</div>
-//               </div>
-//             </Col>
-//           </Row>
-//         </div>
-//       </Content>
-//     )
-//   }
-// }
 
 export default ProductPage;

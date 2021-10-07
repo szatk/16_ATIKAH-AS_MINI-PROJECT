@@ -50,7 +50,7 @@ return (
         </div>
         <br/>
 
-        <div style={{ padding: '0 50px', width: "100%", height: 400, textAlign: 'center', justifyContent: "space-between", display: "flex"}}>
+        <div style={{ padding: '20px 20px', textAlign: 'center', display: "flex", flexWrap: "wrap", justifyContent: "space-between" }}>
           {data?.Produk.map((elementProduk)=>( 
              
              <Link
@@ -60,9 +60,9 @@ return (
                 activeClassName="my-active"
                 aria-current="page"
               > 
-              <Row gutter={[24, 8]}>
-              <Col md={50} style={{ padding: 5 }}>
-              <Image src={elementProduk.gambar} preview={false} style={{ height: 300, marginBottom: 5, }} />
+              <Row gutter={10,10}>
+              <Col md={40} style={{ padding: 10,}}>
+              <Image src={elementProduk.gambar} preview={false} style={{ height: 300, marginBottom: 10 }} />
               <h5 style={{fontWeight: "bold", color: "black" }}>{elementProduk.nama}</h5>
               <h5 style={{color: "black"}}>{elementProduk.harga}</h5>
               <br/>
@@ -73,44 +73,6 @@ return (
             ))}
         </div>
       </Content>
-      
-            // {/* <Col xs={24} sm={8} md={4} style={{ padding: 10 }}>
-            //   <Image src={Dyah} preview={false} style={{ height: 300, marginBottom: 10 }} />
-            //   <br/>
-            //   <Link to="/product" style={{ color: '#000' }}><b>DYAH MINI HEELS</b></Link>
-            //   <div style={{ marginBottom: 10 }}>Rp. 200.000</div>
-            // </Col>
-            // <Col xs={24} sm={8} md={4} style={{ padding: 10 }}>
-            //   <Image src={Selena} preview={false} style={{ height: 300, marginBottom: 10 }} />
-            //   <br/>
-            //   <Link to="/product" style={{ color: '#000' }}><b>SELENA MINI HEELS</b></Link>
-            //   <div style={{ marginBottom: 10 }}>Rp. 200.000</div>
-            // </Col>
-            // <Col xs={24} sm={8} md={4} style={{ padding: 10 }}>
-            //   <Image src={Sarah} preview={false} style={{ height: 300, marginBottom: 10 }} />
-            //   <br/>
-            //   <Link to="/product" style={{ color: '#000' }}><b>SARAH MINI HEELS</b></Link>
-            //   <div style={{ marginBottom: 10 }}>Rp. 200.000</div>
-            // </Col>
-            // <Col xs={24} sm={8} md={4} style={{ padding: 10 }}>
-            //   <Image src={Hana} preview={false} style={{ height: 300, marginBottom: 10 }} />
-            //   <br/>
-            //   <Link to="/product" style={{ color: '#000' }}><b>HANA MAX HEELS</b></Link>
-            //   <div style={{ marginBottom: 10 }}>Rp. 280.000</div>
-            // </Col>
-            // <Col xs={24} sm={8} md={4} style={{ padding: 10 }}>
-            //   <Image src={Nayy} preview={false} style={{ height: 300, marginBottom: 10 }} />
-            //   <br/>
-            //   <Link to="/product" style={{ color: '#000' }}><b>NAYY MAX HEELS</b></Link>
-            //   <div style={{ marginBottom: 10 }}>Rp. 250.000</div>
-            // </Col>
-            // <Col xs={24} sm={8} md={4} style={{ padding: 10 }}>
-            //   <Image src={Ikachan} preview={false} style={{ height: 300, marginBottom: 10 }} />
-            //   <br/>
-            //   <Link to="/product" style={{ color: '#000' }}><b>IKACHAN</b></Link>
-            //   <div style={{ marginBottom: 10 }}>Rp. 300.000</div>
-            // </Col> */}
-         
     )
   }
 

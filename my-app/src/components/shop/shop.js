@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { Layout, Row, Col, Image } from 'antd';
 import './shop.css';
 import { gql, useQuery } from '@apollo/client';
@@ -36,29 +36,29 @@ function ShopPage(){
       return <LoadingSvg />
      }
   return (
-        <Content style={{ background: '#fff', paddingBottom: 50 }}>
-          <div style={{ textAlign: 'center' }}>
+          <Content style={{ background: '#fff', paddingBottom: 50, }}>
+          <div style={{ padding: 20, textAlign: 'center' }}>
           </div>
-          <div style={{ padding: '0 50px', width: "100%", height: 400, textAlign: 'center', justifyContent: "space-between", display: "flex" }}>
+          <div style={{ padding: '0px 50px', textAlign: 'center', display: "flex", flexWrap: "wrap", justifyContent: "space-between" }}>
             {data?.Produk.map((elementProduk)=>( 
-                <Link
+                <NavLink
                   exact
                   to={"/product/" + elementProduk.id}
                   className="nav-link"
                   activeClassName="my-active"
                   aria-current="page"
                 > 
-                <Row gutter={10, 10}>
-                <Col md={40} style={{ padding: 10, justifyContent: "space-between" }}>
+                <Row gutter={10,10}>
+                <Col md={40} style={{ padding: 10,}}>
                 <div>
-                <Image src={elementProduk.gambar} preview={false} style={{ width: "100%", height: 290, marginBottom: 5, }} />
+                <Image src={elementProduk.gambar} preview={false} style={{height: 300, width: 200, marginBottom: 10 }} />
                 <h5 style={{fontWeight: "bold", color: "black"}}>{elementProduk.nama}</h5>
                 <h5 style={{color: "black"}}>{elementProduk.harga}</h5>
                 </div>
                 <br/> 
                 </Col>
               </Row>
-                </Link>
+                </NavLink>
               ))}
           </div>
         </Content>
